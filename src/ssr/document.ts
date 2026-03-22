@@ -32,6 +32,7 @@ export function wrapInDocument(options: DocumentOptions): string {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${title}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   ${styles.map((href) => `<link rel="stylesheet" href="${href}" />`).join("\n  ")}
   ${head}
 </head>

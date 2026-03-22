@@ -39,6 +39,15 @@ export async function createApp(config: VibeframeConfig = {}) {
       }
     }
 
+    // Serve root-level static files (favicon, etc.) from public/
+    const sliced = req.url.pathname.slice(1);
+    if (sliced && !req.url.pathname.includes("..") && sliced.includes(".")) {
+      const rootStaticPath = resolve(projectRoot, "public", sliced);
+      if (existsSync(rootStaticPath)) {
+        return new Response(Bun.file(rootStaticPath));
+      }
+    }
+
     // Serve client bundles
     if (req.url.pathname.startsWith("/static/")) {
       const clientDir = resolve(projectRoot, "dist/client");

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 36" fill="none">
+  <!-- V icon as first letter -->
+  <path d="M4 4 L14 28 L24 4" stroke="#a3e635" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- "ibeframe" continuing from the V -->
+  <text x="27" y="24" font-family="'JetBrains Mono', 'SF Mono', 'Fira Code', monospace" font-size="22" font-weight="700" fill="#e5e5e5" letter-spacing="-0.5">ibeframe</text>
+</svg>

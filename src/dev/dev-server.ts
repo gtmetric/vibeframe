@@ -63,10 +63,15 @@ async function buildDevClient() {
       .replace(/\[/g, "_")
       .replace(/\]/g, "_");
 
-    // Find hydrate.ts — either in local src/ (framework dev) or node_modules (installed)
+    // Find hydrate.ts — local src/, node_modules, or relative to this file (monorepo/site)
     const localHydrate = resolve(projectRoot, "src/client/hydrate.ts");
     const installedHydrate = resolve(projectRoot, "node_modules/vibeframe/src/client/hydrate.ts");
-    const hydratePath = existsSync(localHydrate) ? localHydrate : installedHydrate;
+    const siblingHydrate = resolve(import.meta.dir, "../client/hydrate.ts");
+    const hydratePath = existsSync(localHydrate)
+      ? localHydrate
+      : existsSync(installedHydrate)
+        ? installedHydrate
+        : siblingHydrate;
     const relToHydrate = relative(entriesDir, hydratePath);
     const relToPage = relative(entriesDir, route.pagePath);
 
@@ -147,6 +152,15 @@ serve(async (req: VibeframeRequest, res: VibeframeResponse) => {
     const filePath = resolve(projectRoot, "public", fileName);
     if (existsSync(filePath)) {
       return new Response(Bun.file(filePath));
+    }
+  }
+
+  // Serve root-level static files (favicon, logo, etc.) from public/
+  const sliced = req.url.pathname.slice(1);
+  if (sliced && !req.url.pathname.includes("..") && sliced.includes(".")) {
+    const rootStaticPath = resolve(projectRoot, "public", sliced);
+    if (existsSync(rootStaticPath)) {
+      return new Response(Bun.file(rootStaticPath));
     }
   }
 

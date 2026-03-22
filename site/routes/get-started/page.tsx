@@ -4,8 +4,11 @@ export default function GetStartedPage() {
       {/* Nav */}
       <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border-1 bg-[#050505]/80 backdrop-blur-xl">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="/" class="font-mono text-lg font-bold tracking-tight text-white">
-            vibeframe
+          <a href="/" class="flex items-center gap-0">
+            <svg viewBox="0 0 260 36" fill="none" class="h-6" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4 L14 28 L24 4" stroke="#a3e635" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <text x="27" y="24" font-family="'JetBrains Mono', 'SF Mono', 'Fira Code', monospace" font-size="22" font-weight="700" fill="#e5e5e5" letter-spacing="-0.5">ibeframe</text>
+            </svg>
           </a>
           <div class="flex items-center gap-6">
             <a
@@ -374,7 +377,10 @@ export default function GetStartedPage() {
       <footer class="border-t border-border-1 py-12 px-6">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-3">
-            <span class="font-mono text-sm font-bold text-white">vibeframe</span>
+            <svg viewBox="0 0 260 36" fill="none" class="h-4" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4 L14 28 L24 4" stroke="#a3e635" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <text x="27" y="24" font-family="'JetBrains Mono', 'SF Mono', 'Fira Code', monospace" font-size="22" font-weight="700" fill="#e5e5e5" letter-spacing="-0.5">ibeframe</text>
+            </svg>
             <span class="text-neutral-600 text-sm">·</span>
             <span class="text-neutral-600 text-sm">Built for AI. Used by developers.</span>
           </div>
