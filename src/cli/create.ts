@@ -48,6 +48,7 @@ export async function createProject(name: string) {
       build: "bun run node_modules/vibeframe/src/cli/index.ts build",
       start: "bun run node_modules/vibeframe/src/cli/index.ts start",
       routes: "bun run node_modules/vibeframe/bin/vibeframe.ts routes",
+      export: "bun run node_modules/vibeframe/src/cli/index.ts export",
     },
     dependencies: {
       vibeframe: "latest",

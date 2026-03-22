@@ -44,6 +44,12 @@ switch (command) {
     break;
   }
 
+  case "export": {
+    const { exportSite } = await import("./export.ts");
+    await exportSite();
+    break;
+  }
+
   case "new": {
     const subcommand = args[0];
     if (subcommand === "route") {
@@ -76,6 +82,7 @@ switch (command) {
     bun run dev [port]                    Start development server
     bun run build                         Build for production
     bun run start [port]                  Serve production build
+    vibeframe export                           Export static HTML to dist/
 
   Route tools:
     vibeframe routes                           List all routes with their files

@@ -7,8 +7,9 @@ An AI-optimal full-stack framework built with Bun. Schema-driven, colocated rout
 - `bun run dev` — Dev server with live reload (port 3000)
 - `bun run build` — Bundle client JS for production
 - `bun run start` — Serve production build
-- `bun run bin/vibeframe.ts routes` — List all routes with their files
-- `bun run bin/vibeframe.ts new route <path>` — Scaffold a new route
+- `vibeframe export` — Export all static routes as HTML to `dist/`
+- `vibeframe routes` — List all routes with their files
+- `vibeframe new route <path>` — Scaffold a new route
   - `--action` — include action.ts
   - `--schema` — include schema.ts
 
@@ -28,11 +29,13 @@ src/
   dev/dev-server.ts     — Dev server with file watching
   dev/hot-reload.ts     — SSE-based live reload
   db/database.ts        — Bun SQLite singleton
-  db/schema.ts          — schema<T>() with CRUD helpers
+  db/schema.ts          — Drizzle ORM re-exports
   db/csrf.ts            — CSRF token generation/validation
   components/Form.tsx   — <Form> and <FieldError> components
+  validation.ts         — validate() helper with Zod
   errors.ts             — Structured errors with code + fix
   types.ts              — Core type definitions
+  cli/export.ts         — Static HTML export
 ```
 
 ## Route Conventions
@@ -155,6 +158,47 @@ import { Form, FieldError } from "../../src/components/Form.tsx";
 ```
 
 CSRF token is automatically included. Actions without valid CSRF return 403.
+
+## Validation
+
+Built-in form validation using Zod. The `validate()` helper parses `formData()`, validates, and returns typed data or field-level errors:
+
+```tsx
+// routes/example/action.ts
+import { validate } from "vibeframe";
+import { z } from "vibeframe";
+
+export async function action(req) {
+  const { data, errors } = await validate(req, {
+    name: z.string().min(1, "Name is required"),
+    email: z.string().email("Invalid email"),
+  });
+
+  if (errors) return { errors };
+  // data.name → string, data.email → string (fully typed)
+}
+```
+
+Errors returned from `validate()` are compatible with `<FieldError>` — they flow through `_actionErrors` automatically.
+
+## Static Export
+
+Export all static routes as plain HTML files:
+
+```bash
+vibeframe export
+```
+
+Output goes to `dist/`. For dynamic routes, export `getStaticPaths()` from the page:
+
+```tsx
+// routes/users/[id]/page.tsx
+export function getStaticPaths() {
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+}
+
+export default function UserPage({ id }) { ... }
+```
 
 ## Error Codes
 

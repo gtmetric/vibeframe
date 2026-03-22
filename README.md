@@ -28,6 +28,8 @@ bun run dev
 - **Drizzle + SQLite** — define a schema, get a table, query with types
 - **Tailwind CSS** — no config needed
 - **Forms with CSRF** — built-in protection
+- **Validation** — `validate(req, schema)` with Zod, typed data, field-level errors
+- **Static export** — `vibeframe export` renders pages to HTML, host anywhere
 - **Live reload** — edit a file, see it instantly
 - **Structured errors** — every error tells you exactly how to fix it
 - **One command deploy** — `docker build -t app . && docker run -p 3000:3000 app`
