@@ -1,0 +1,7 @@
+node_modules
+dist
+.coloc
+data
+*.log
+*.db
+.git

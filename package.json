@@ -1,0 +1,40 @@
+{
+  "name": "coloc",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "An AI-optimal full-stack framework built with Bun. Schema-driven, colocated routes, zero config.",
+  "bin": {
+    "coloc": "./bin/coloc.ts"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*"
+  },
+  "files": [
+    "src",
+    "bin"
+  ],
+  "scripts": {
+    "dev": "bun run src/dev/dev-server.ts",
+    "build": "bun run src/cli/index.ts build",
+    "start": "bun run src/cli/index.ts start",
+    "routes": "bun run bin/coloc.ts routes"
+  },
+  "keywords": [
+    "framework",
+    "fullstack",
+    "bun",
+    "preact",
+    "ssr",
+    "ai",
+    "sqlite"
+  ],
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.1",
+    "preact": "^10.29.0",
+    "preact-render-to-string": "^6.6.6"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "baseUrl": ".",
+    "paths": {
+      "coloc": ["./src/index.ts"],
+      "coloc/*": ["./src/*"],
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"],
+      "react/jsx-runtime": ["./node_modules/preact/jsx-runtime/"]
+    },
+    "types": ["bun-types"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "routes/**/*.ts", "routes/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
+}
